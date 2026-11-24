@@ -1,0 +1,18 @@
+{
+  "case_id": "DEMO-NOT-A-REAL-CASE",
+  "note": "以下为演示接口的虚构示例，非官方测试案例，不构成正式答案。",
+  "task": "根据实验记录、配置与日志补全方法章和实验章，并生成参数溯源表与复现清单",
+  "params": {
+    "language": "zh",
+    "audience": "CS 顶会读者",
+    "forbid_fabrication": true
+  },
+  "materials": {
+    "notes": "notes.md",
+    "config": "config.yaml",
+    "logs": ["train.log"],
+    "code": "code/",
+    "data_description": "data_split.json",
+    "constraints": ["不得补造参数与数值", "重复次数以日志为准"]
+  }
+}
