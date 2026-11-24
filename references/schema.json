@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "reproducible-methods-writer result.json",
+  "type": "object",
+  "required": [
+    "case_id",
+    "status",
+    "artifact",
+    "self_check"
+  ],
+  "properties": {
+    "case_id": { "type": "string" },
+    "status": { "enum": ["success", "partial", "blocked"] },
+    "note": { "type": "string" },
+    "artifact": {
+      "type": "object",
+      "required": ["methods_text", "experiments_text"],
+      "properties": {
+        "methods_text": { "type": "string" },
+        "experiments_text": { "type": "string" },
+        "language": { "enum": ["zh", "en"] },
+        "audience": { "type": "string" }
+      }
+    },
+    "step_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "input", "operation", "output", "decision_condition"],
+        "properties": {
+          "step_id": { "type": "string" },
+          "input": { "type": "string" },
+          "operation": { "type": "string" },
+          "output": { "type": "string" },
+          "decision_condition": { "type": "string" },
+          "source_location": { "type": "string" }
+        }
+      }
+    },
+    "parameter_provenance_table": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "value", "source", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "string" },
+          "unit": { "type": "string" },
+          "scope": { "type": "string" },
+          "source": { "type": "string" },
+          "source_location": { "type": "string" },
+          "status": { "enum": ["sourced", "code_default", "author_confirmed", "conflict", "unsourced"] }
+        }
+      }
+    },
+    "dataset_split": { "type": "object" },
+    "experiment_setup": { "type": "object" },
+    "baseline_comparison": { "type": "array" },
+    "reproducibility_manifest": { "type": "object" },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["limitation", "failure_scenario"],
+        "properties": {
+          "limitation": { "type": "string" },
+          "failure_scenario": { "type": "string" },
+          "scope": { "type": "string" },
+          "source_location": { "type": "string" }
+        }
+      }
+    },
+    "fact_source_map": { "type": "array" },
+    "uncertainties": { "type": "array", "items": { "type": "string" } },
+    "human_review_items": { "type": "array", "items": { "type": "string" } },
+    "change_log": { "type": "array" },
+    "self_check": {
+      "type": "object",
+      "required": ["six_elements_complete", "numbers_sourced", "conditions_consistent", "reproducible", "limitations_anchored", "no_fabrication"],
+      "properties": {
+        "six_elements_complete": { "type": "boolean" },
+        "numbers_sourced": { "type": "boolean" },
+        "conditions_consistent": { "type": "boolean" },
+        "reproducible": { "type": "boolean" },
+        "limitations_anchored": { "type": "boolean" },
+        "no_fabrication": { "type": "boolean" }
+      }
+    }
+  }
+}
