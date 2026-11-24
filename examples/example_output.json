@@ -1,0 +1,109 @@
+{
+  "case_id": "DEMO-NOT-A-REAL-CASE",
+  "status": "partial",
+  "note": "示意输出，非真实案例结果；参数与数值均为占位，不代表任何真实实验。",
+  "artifact": {
+    "methods_text": "……（示意文本）S1 输入特征矩阵；操作归一化；输出标准化矩阵；判断条件：无（来源：notes.md §2）……",
+    "experiments_text": "……（示意文本）训练/验证/测试分三段描述，条件不串台……",
+    "language": "zh",
+    "audience": "CS 顶会读者"
+  },
+  "step_sequence": [
+    {
+      "step_id": "S1",
+      "input": "原始特征矩阵",
+      "operation": "按训练集统计量做归一化",
+      "output": "标准化矩阵",
+      "decision_condition": "无",
+      "source_location": "notes.md §2"
+    }
+  ],
+  "parameter_provenance_table": [
+    {
+      "name": "learning_rate",
+      "value": "1e-4",
+      "unit": "-",
+      "scope": "训练",
+      "source": "config.yaml",
+      "source_location": "L7",
+      "status": "sourced"
+    },
+    {
+      "name": "batch_size",
+      "value": "<待作者确认>",
+      "unit": "样本",
+      "scope": "训练",
+      "source": "材料未记录",
+      "source_location": "",
+      "status": "unsourced"
+    }
+  ],
+  "dataset_split": {
+    "name": "示意数据集",
+    "version": "<待作者确认>",
+    "scale": "<示意>",
+    "preprocessing": "归一化 + 增强",
+    "split_ratio": "8:1:1",
+    "random_method": "<待作者确认>",
+    "subset_usage": "训练/验证/测试",
+    "source_location": "data_split.json"
+  },
+  "experiment_setup": {
+    "train": "示意",
+    "validation": "示意",
+    "test": "示意",
+    "hardware": "<待作者确认>",
+    "software": "<待作者确认>",
+    "seeds": ["<待作者确认>"],
+    "repeats": "<待作者确认>",
+    "source_location": "train.log 头部"
+  },
+  "baseline_comparison": [
+    {
+      "baseline": "示意基线 v1",
+      "version": "v1",
+      "budget_matched": false,
+      "metrics": ["accuracy"],
+      "statistical_method": "均值±标准差",
+      "comparable": false,
+      "basis": "预算不一致"
+    }
+  ],
+  "reproducibility_manifest": {
+    "code_version": "<待作者确认>",
+    "environment": "<待作者确认>",
+    "commands": ["python train.py --config config.yaml"],
+    "data_access": "<待作者确认>",
+    "seeds": ["<待作者确认>"],
+    "hardware": "<待作者确认>"
+  },
+  "limitations": [
+    {
+      "limitation": "对分布偏移敏感",
+      "failure_scenario": "当测试数据分布偏离训练分布时精度下降",
+      "scope": "同分布场景",
+      "source_location": "notes.md §5"
+    }
+  ],
+  "fact_source_map": [
+    {"item": "learning_rate", "value": "1e-4", "source_location": "config.yaml L7"}
+  ],
+  "uncertainties": ["batch_size、随机种子、代码版本等材料未记录，已标 unsourced/missing"],
+  "human_review_items": [
+    "请确认 batch_size 取值与来源（当前无记录，影响准确性）",
+    "请确认数据集版本、划分随机方式与种子（影响复现）",
+    "请确认代码版本/环境依赖与完整运行命令"
+  ],
+  "change_log": [
+    {"step": 4, "action": "将不可比基线降级为描述性对照", "reason": "预算不一致"},
+    {"step": 3, "action": "batch_size 标 unsourced 而非补默认值", "reason": "材料无记录"}
+  ],
+  "self_check": {
+    "six_elements_complete": true,
+    "numbers_sourced": false,
+    "conditions_consistent": true,
+    "reproducible": false,
+    "limitations_anchored": true,
+    "no_fabrication": true
+  }
+}
